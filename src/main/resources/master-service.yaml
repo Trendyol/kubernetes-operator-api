@@ -1,0 +1,21 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: master-service-__RUN_ID__
+  labels:
+    app: master-service
+    id: __RUN_ID__
+  namespace: service
+spec:
+  ports:
+    - port: 1235
+      targetPort: master-p1
+      protocol: TCP
+      name: master-p1
+    - port: 1236
+      targetPort: master-p2
+      protocol: TCP
+      name: master-p2
+  selector:
+    app: master-service
+    id: __RUN_ID__
