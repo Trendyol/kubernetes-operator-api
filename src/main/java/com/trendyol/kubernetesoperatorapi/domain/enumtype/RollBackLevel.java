@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 public enum RollBackLevel {
 
     //Queue is important !
+
     ALL_FLOW(5),
     BEFORE_SERVICE_UI(4),
     BEFORE_SERVICE(3),
