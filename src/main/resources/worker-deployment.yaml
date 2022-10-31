@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-deployment-__RUN_ID__
+  labels:
+    name: worker-deployment
+    id: __RUN_ID__
+  namespace: deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker-deployment
+  template:
+      labels:
+        app: worker-deployment
+        id: __RUN_ID__
+    spec:
+      containers:
+        - name: worker-deployment
+          image: __IMAGE__
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: 500Mi
+              cpu: "200m"
+            limits:
+              memory: 3Gi
+              cpu: "1"
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - /bin/sh
+                  - -c
+                  - pkill -f deployment
+          env:
+            - name: MODE
+              value: worker
+            - name: MASTER_URL
+              value: worker-deployment-__RUN_ID__
+            - name: DATA_CENTER
+              value: __DATA_CENTER__
+            - name: RUN_ID
+              value: __RUN_ID__
