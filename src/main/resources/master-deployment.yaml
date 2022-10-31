@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: master-deployment-__RUN_ID__
+  labels:
+    name: master-deployment
+    id: __RUN_ID__
+  namespace: deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: master-deployment
+      id: __RUN_ID__
+  template:
+    metadata:
+      labels:
+        app: master-deployment
+        id: __RUN_ID__
+    spec:
+      containers:
+        - name: master-deployment
+          image: __IMAGE__
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "200m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+          env:
+            - name: MODE
+              value: master
+            - name: RUN_ID
+              value: __RUN_ID__
+            - name: DATA_CENTER
+              value: __DATA_CENTER__
+          ports:
+            - name: master-web
+              containerPort: 1234
+              protocol: TCP
+            - name: master-p1
+              containerPort: 1235
+              protocol: TCP
+            - name: master-p2
+              containerPort: 1236
+              protocol: TCP
