@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: 'Kubernetes Operator Api'
+    description: 'Kubernetes Operator Documentation'
+  main:
+    allow-bean-definition-overriding: true
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  profiles:
+    active: test
+
+logging:
+  level:
+    root: WARN
+
+cors:
+  webInternalIp: http://localhost:3000
+  webExternalIp: https://www.trendyol.com
+
+mock:
+  kubernetes.api.enabled: true

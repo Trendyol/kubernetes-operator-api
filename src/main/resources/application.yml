@@ -1,0 +1,64 @@
+---
+spring:
+  application:
+    name: 'Kubernetes Operator Api'
+    description: 'Kubernetes Operator Api Documentation'
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+swagger:
+  host:
+    url: localhost:1234
+    protocol: http
+  contact:
+    name: Trendyol
+    url: https://www.trendyol.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: '@version@'
+
+server:
+  servlet:
+    context-path: /
+  port: 1234
+  error:
+    whitelabel:
+      enabled: false
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+        isolation:
+          thread:
+            timeoutInMilliseconds:5000
+
+logging:
+  pattern:
+    console: "{\"time\": \"%d{yyyy-MM-dd'T'HH:mm:ss}Z\", \"level\": \"%p\", \"agent-name\": \"%X{x-agentname}\", \"correlation-id\": \"%X{x-correlationid}\", \"executor-user\": \"%X{x-executor-user}\", \"remote-host\": \"%X{x-remote-host}\", \"request-path\":\"%X{Request-Path}\", \"user-agent\":\"%X{User-Agent}\", \"source\":\"%logger{63}:%L\", \"message\": \"%replace(%m%wEx{10}){'[\r\n]+', '\n'}%nopex\"}%n"
+  level:
+    com.trendyol: INFO
+
+---
+spring:
+  profiles: stage
+
+cors:
+  webInternalIp: http://localhost:3000
+  webExternalIp: https://www.trendyol.com
+
+---
+spring:
+  profiles: prod
+
+cors:
+  webInternalIp: http://localhost:3000
+  webExternalIp: https://www.trendyol.com
