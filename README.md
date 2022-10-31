@@ -47,6 +47,7 @@ For building and running the application, you need:
 ### Build & Run
 
 ```
+  SPRING_PROFILES_ACTIVE=prod
   mvn clean install 
   mvn --projects kubernetes-operator-api spring-boot:run
 ```
