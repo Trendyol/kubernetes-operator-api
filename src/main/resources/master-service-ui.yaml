@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: master-service-ui-__RUN_ID__
+  labels:
+    app: master-service
+    id: __RUN_ID__
+  namespace: service
+spec:
+  ports:
+    - port: 1234
+      targetPort: master-web
+      protocol: TCP
+      name: master-web
+  selector:
+    app: master-service
+    id: __RUN_ID__
+  type: NodePort
