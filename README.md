@@ -1,3 +1,5 @@
+
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Trendyol/kubernetes-operator-api/badge)](https://scorecard.dev/viewer/?uri=github.com/Trendyol/kubernetes-operator-api)
 # Kubernetes Operator Api
 
 The Kubernetes API is a sample Kubernetes operator API using the <strong>Java Kubernetes Client</strong>.<br>
